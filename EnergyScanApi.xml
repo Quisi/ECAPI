@@ -1,0 +1,1669 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EnergyScanApi</name>
+    </assembly>
+    <members>
+        <member name="T:EnergyScanApi.Attributes.ValidateModelStateAttribute">
+            <summary>
+            Model state validation attribute
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Attributes.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Called before the action method is invoked
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.AppController">
+            <summary>
+            Convinience Endpoints for Mobile and Desktop App
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.#ctor(EnergyScanApi.AppDb,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.Post(EnergyScanApi.DTOs.CanDTO)">
+            <summary>
+            Create a Can with Fieldinput instead of IDs, therefore search for existing Ids or create new ones
+            </summary>
+            <remarks>
+            Every 'id'-Field will be ignored! Ids are handled by the API.
+            </remarks>
+            <param name="body"></param>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="409">Conflict, something already exists</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.GetCanByIdAsync(System.String)">
+            <summary>
+            Get Can By Id as DTO
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Id not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.getTagDTOs(System.String)">
+            <summary>
+            TagDTOs for CanDTO
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.getBarcodeDTOs(System.String)">
+            <summary>
+            BarcodeDTOs for CanDTO
+            </summary>
+            <param name="canId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.GetChangeRequestsAsync">
+            <summary>
+            Lists Change Requests as DTOs
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Id not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.AppController.GetCansAsync">
+            <summary>
+            Get Can List as DTOs
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Id not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.BarcodeCanController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.AddBarcodeCan(EnergyScanApi.Models.BarcodeCan)">
+            <summary>
+            Add a new BarcodeCan
+            </summary>
+            <param name="body">BarcodeCan object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="500">Internal Error, could not create Db-Entry</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.UpdateBarcodeCan(System.String,EnergyScanApi.Models.BarcodeCan)">
+            <summary>
+            Update an existing BarcodeCan
+            </summary>
+            <remarks>Update BarcodeCan</remarks>
+            <param name="barcodeCanId">BarcodeCan object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="404">BarcodeCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.DeleteBarcodeCan(System.String)">
+            <summary>
+            Deletes a BarcodeCan
+            </summary>
+            <param name="barcodeCanId">can id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="404">BarcodeCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.GetBarcodeCanById(System.String)">
+            <summary>
+            Find BarcodeCan by ID
+            </summary>
+            <remarks>Returns a single barcodecan</remarks>
+            <param name="barcodeCanId">ID of BarcodeCan to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">BarcodeCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.FindBarcodeCansByCanId(System.String)">
+            <summary>
+            Finds BarcodeCans by CanID
+            </summary>
+            <remarks>BarcodeCanId by CanId</remarks>
+            <param name="canId">Can Id</param>
+            <response code="200">successful operation</response>
+            <response code="404">CanId not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.FindBarcodeCansByBarcodeId(System.String)">
+            <summary>
+            Finds BarcodeCans by barcodeID
+            </summary>
+            <remarks>BarcodeCanId by barcodeID</remarks>
+            <param name="barcodeId">barcode Id</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid canId value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeCanController.GetbarcodeCanList">
+            <summary>
+            List BarcodeCans
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeController.PostBarcode(EnergyScanApi.Models.Barcode)">
+            <summary>
+            
+            </summary>
+            <param name="postbarcode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeController.PutBarcode(System.String,EnergyScanApi.Models.Barcode)">
+            <summary>
+            
+            </summary>
+            <param name="pid"></param>
+            <param name="postbarcode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeController.DeleteBarcode(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="did"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeController.GetBarcodes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeController.GetBarcodeById(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.BarcodeController.GetBarcodeByCode(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.CanController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.CreateCan(EnergyScanApi.Models.Can)">
+            <summary>
+            Creates a can in the store
+            </summary>
+            <param name="body">Can object to be created</param>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.UpdateCanWithForm(System.String,EnergyScanApi.Models.Can)">
+            <summary>
+            Updates a can in the store with form data
+            </summary>
+            <param name="canId">ID of can that needs to be updated</param>
+            <param name="name">Updated name of the can</param>
+            <param name="status">Updated status of the can</param>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.PatchCan(System.String,EnergyScanApi.Models.Can)">
+            <summary>
+            Patches a can
+            </summary>
+            <param name="canId">can id to be patched</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.Deletecan(System.String)">
+            <summary>
+            Deletes a can
+            </summary>
+            <param name="canId">can id to delete</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.GetCanById(System.String)">
+            <summary>
+            Find can by ID
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="canId">ID of can to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByManufacturerId(System.String)">
+            <summary>
+            Finds Cans by manufacturerid
+            </summary>
+            <param name="manufacturerid">Status values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByTasteId(System.String)">
+            <summary>
+            Finds Cans by tasteid
+            </summary>
+            <param name="tasteid">Status values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByCountryId(System.String)">
+            <summary>
+            Finds Cans by countryid
+            </summary>
+            <param name="countryid">Status values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByStatus(System.String)">
+            <summary>
+            Finds Cans by status
+            </summary>
+            <param name="statusid">Status values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByContentAmount(System.String)">
+            <summary>
+            Finds Cans by contentAmount
+            </summary>
+            <param name="contentAmount">Status values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByMhd(System.String)">
+            <summary>
+            Finds Cans by mhd
+            </summary>
+            <param name="mhd">Status values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByDeposit(System.String)">
+            <summary>
+            Finds Cans by deposit
+            </summary>
+            <param name="deposit">values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByClosure(System.String)">
+            <summary>
+            Finds Cans by closure
+            </summary>
+            <param name="closure">values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByDamaged(System.Boolean)">
+            <summary>
+            Finds Cans by damaged
+            </summary>
+            <param name="damaged">values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.FindCansByCoffeincontent(System.String)">
+            <summary>
+            Finds Cans by coffeincontent
+            </summary>
+            <param name="coffeincontent">values that need to be considered for filter</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid status value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CanController.GetCans">
+            <summary>
+            List Cans
+            </summary>
+            <remarks>Returns all cans</remarks>
+            <response code="200">successful operation</response>        
+            <response code="404">can not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.ChangeRequestController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequest">
+            <summary>
+            List changeRequests
+            </summary>
+            <remarks>Returns all changeRequests</remarks>
+            <response code="200">successful operation</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.AddchangeRequest(EnergyScanApi.Models.ChangeRequest)">
+            <summary>
+            Add a new changeRequest
+            </summary>
+            <param name="body">changeRequest object that needs to be added to the store</param>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.UpdatechangeRequest(System.String,EnergyScanApi.Models.ChangeRequest)">
+            <summary>
+            Update an existing changeRequest
+            </summary>
+            <remarks>Update changeRequest</remarks>
+            <param name="changeRequestId">changeRequest object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">changeRequest not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.DeletechangeRequest(System.String)">
+            <summary>
+            Deletes a changeRequest
+            </summary>
+            <param name="changeRequestId">changeRequest id to delete</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestById(System.String)">
+            <summary>
+            Find changeRequests by ID
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="changeRequestId">ID of changeRequest to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByTable(System.String)">
+            <summary>
+            Find changeRequests by Table
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="table">Table of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByField(System.String)">
+            <summary>
+            Find changeRequests by Field
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="field">Field of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid Field supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByPkField(System.String)">
+            <summary>
+            Find changeRequests by Pkfield
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="pkfield">Pkfield of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid Pkfield supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByPk(System.String)">
+            <summary>
+            Find changeRequests by Pk
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="pk">Pk of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid Pk supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByUserId(System.String)">
+            <summary>
+            Find changeRequests by UserId
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="userId">UserId of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid UserId supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByTimestamp(System.DateTime)">
+            <summary>
+            Find changeRequests by Timestamp
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="timestamp">Timestamp of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid Timestamp supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ChangeRequestController.GetChangeRequestByStateId(System.String)">
+            <summary>
+            Find changeRequests by StateId
+            </summary>
+            <remarks>Returns a List of changeRequests</remarks>
+            <param name="stateId">StateId of changeRequests to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid StateId supplied</response>
+            <response code="404">changeRequest not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.CountryController">
+            <summary>
+            API-Controller: Country
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.Addcountry(EnergyScanApi.Models.Country)">
+            <summary>
+            Add a new country
+            </summary>
+            <param name="body">country object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="404">can not found</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.Updatecountry(System.String,EnergyScanApi.Models.Country)">
+            <summary>
+            Update an existing country
+            </summary>
+            <remarks>Update country</remarks>
+            <param name="countryId">country object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">country not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.Deletecountry(System.String)">
+            <summary>
+            Deletes a country
+            </summary>
+            <param name="countryId">country id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">country not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.GetcountryById(System.String)">
+            <summary>
+            Find country by ID
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="countryId">ID of country to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">country not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.GetcountryByName(System.String)">
+            <summary>
+            Find Country by Name
+            </summary>
+            <remarks>Returns a single Country</remarks>
+            <param name="country">ID of Country to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.CountryController.GetcountryList">
+            <summary>
+            List Country
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Country not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.GroupController">
+            <summary>
+            API-Controller: Group
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.Addgroup(EnergyScanApi.Models.Group)">
+            <summary>
+            Add a new group
+            </summary>
+            <param name="body">Group object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="404">Group not found</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.Updategroup(System.String,EnergyScanApi.Models.Group)">
+            <summary>
+            Update an existing group
+            </summary>
+            <remarks>Update group</remarks>
+            <param name="groupId">Group object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Group not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.Deletegroup(System.String)">
+            <summary>
+            Deletes a group
+            </summary>
+            <param name="groupId">Group id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Group not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.GetgroupById(System.String)">
+            <summary>
+            Find group by ID
+            </summary>
+            <remarks>Returns a single group</remarks>
+            <param name="groupId">ID of group to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Group not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.GetgroupByName(System.String)">
+            <summary>
+            Find group by Name
+            </summary>
+            <remarks>Returns a single group</remarks>
+            <param name="group">ID of group to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">Group not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.GroupController.GetgroupList">
+            <summary>
+            List groups
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Groups not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.ImageCanController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.AddImageCan(EnergyScanApi.Models.ImageCan)">
+            <summary>
+            Add a new ImageCan
+            </summary>
+            <param name="body">ImageCan object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="500">Internal Error, could not create Db-Entry</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.UpdateImageCan(System.String,EnergyScanApi.Models.ImageCan)">
+            <summary>
+            Update an existing ImageCan
+            </summary>
+            <remarks>Update ImageCan</remarks>
+            <param name="imageCanId">ImageCan object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">ImageCan not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.DeleteImageCan(System.String)">
+            <summary>
+            Deletes a ImageCan
+            </summary>
+            <param name="ImageCanId">can id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">ImageCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.GetImageCanById(System.String)">
+            <summary>
+            Find ImageCan by ID
+            </summary>
+            <remarks>Returns a single tagcan</remarks>
+            <param name="ImageCanId">ID of ImageCan to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">ImageCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.FindImageCansByCanId(System.String)">
+            <summary>
+            Finds ImageCans by CanID
+            </summary>
+            <remarks>ImageCanId by CanID</remarks>
+            <param name="canId">Can Id</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid canId value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.FindImageCansByImageId(System.String)">
+            <summary>
+            Finds ImageCans by ImageID
+            </summary>
+            <remarks>ImageCanId by ImageID</remarks>
+            <param name="imageId">Image Id</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid canId value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageCanController.GetimageCanList">
+            <summary>
+            List imageCans
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.ImageController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.#ctor(EnergyScanApi.AppDb,Microsoft.Extensions.Logging.ILogger{EnergyScanApi.Controllers.ImageController})">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.Updateimage(System.String,EnergyScanApi.Models.Image)">
+            <summary>
+            Update an existing image
+            </summary>
+            <remarks>Update image</remarks>
+            <param name="imageId">image object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">image not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.Deleteimage(System.String)">
+            <summary>
+            Deletes a image
+            </summary>
+            <param name="imageId">image id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">image not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.GetimageById(System.String)">
+            <summary>
+            Find image by ID
+            </summary>
+            <remarks>Returns a single image</remarks>
+            <param name="imageId">ID of image to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Image not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.GetimageByName(System.String)">
+            <summary>
+            Find image by Name
+            </summary>
+            <remarks>Returns a single image</remarks>
+            <param name="imagename">Name of image to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">Image not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.GetImageByUrl(System.String)">
+            <summary>
+            Find image by Url
+            </summary>
+            <remarks>Returns a single image</remarks>
+            <param name="url">ID of image to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">Image not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ImageController.GetimageList">
+            <summary>
+            List images
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Images not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.ManufacturerController">
+            <summary>
+            API-Controller: Manufacturer
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.Addmanufacturer(EnergyScanApi.Models.Manufacturer)">
+            <summary>
+            Add a new manufacturer
+            </summary>
+            <param name="body">manufacturer object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="404">can not found</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.Updatemanufacturer(System.String,EnergyScanApi.Models.Manufacturer)">
+            <summary>
+            Update an existing manufacturer
+            </summary>
+            <remarks>Update manufacturer</remarks>
+            <param name="manufacturerId">manufacturer object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">manufacturer not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.Deletemanufacturer(System.String)">
+            <summary>
+            Deletes a manufacturer
+            </summary>
+            <param name="manufacturerId">manufacturer id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="404">manufacturer not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.GetmanufacturerById(System.String)">
+            <summary>
+            Find Manufacturer by ID
+            </summary>
+            <remarks>Returns a single Manufacturer</remarks>
+            <param name="manufacturerId">ID of manufacturer to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">manufacturer not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.GetmanufacturerByName(System.String)">
+            <summary>
+            Find Manufacturer by ID
+            </summary>
+            <remarks>Returns a single Manufacturer</remarks>
+            <param name="manufacturer">ID of Manufacturer to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.ManufacturerController.GetmanufacturerList">
+            <summary>
+            List Manufacturer
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.PolicyController">
+            <summary>
+            API-Controller: Policy
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.Addpolicy(EnergyScanApi.Models.Policy)">
+            <summary>
+            Add a new policy
+            </summary>
+            <param name="body">Policy object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="404">Policy not found</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.Updatepolicy(System.String,EnergyScanApi.Models.Policy)">
+            <summary>
+            Update an existing policy
+            </summary>
+            <remarks>Update policy</remarks>
+            <param name="policyId">Policy object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Policy not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.Deletepolicy(System.String)">
+            <summary>
+            Deletes a policy
+            </summary>
+            <param name="policyId">Policy id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Policy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.GetpolicyById(System.String)">
+            <summary>
+            Find policy by ID
+            </summary>
+            <remarks>Returns a single policy</remarks>
+            <param name="policyId">ID of policy to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Policy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.GetpolicyByName(System.String)">
+            <summary>
+            Find policy by Name
+            </summary>
+            <remarks>Returns a single policy</remarks>
+            <param name="policy">ID of policy to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">Policy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.PolicyController.GetpolicyList">
+            <summary>
+            List policys
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">Policys not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.SecurityController">
+            <summary>
+            Controller endpoint for authorization, token and security
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.SecurityController.Authorize(System.String,System.String)">
+            <summary>
+            Get JWT-Token by Username
+            </summary>
+            <param name="username">The user name for login</param>
+            <param name="password">The password for login in clear text</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid username/password supplied</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.SecurityController.AuthorizeByEmail(System.String,System.String)">
+            <summary>
+            Get JWT-Token by Email
+            </summary>
+            <param name="email">The user email for login</param>
+            <param name="password">The password for login in clear text</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid username/password supplied</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.StatusController">
+            <summary>
+            API-Controller: Status
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.Addstatus(EnergyScanApi.Models.Status)">
+            <summary>
+            Add a new status
+            </summary>
+            <param name="body">status object that needs to be added to the store</param>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.Updatestatus(System.String,EnergyScanApi.Models.Status)">
+            <summary>
+            Update an existing status
+            </summary>
+            <remarks>Update status</remarks>
+            <param name="statusId">status object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">status not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.Deletestatus(System.String)">
+            <summary>
+            Deletes a status
+            </summary>
+            <param name="statusId">status id to delete</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">status not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.GetstatusById(System.String)">
+            <summary>
+            Find Status by ID
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="statusId">ID of status to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">status not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.GetstatusByName(System.String)">
+            <summary>
+            Find Status by Name
+            </summary>
+            <remarks>Returns a single Status</remarks>
+            <param name="status"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">status not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.StatusController.GetstatusList">
+            <summary>
+            List Status
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.TagCanController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.AddTagCan(EnergyScanApi.Models.TagCan)">
+            <summary>
+            Add a new TagCan
+            </summary>
+            <param name="body">TagCan object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="500">Internal Error, could not create Db-Entry</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.UpdateTagCan(System.String,EnergyScanApi.Models.TagCan)">
+            <summary>
+            Update an existing TagCan
+            </summary>
+            <remarks>Update TagCan</remarks>
+            <param name="tagCanId">TagCan object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">TagCan not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.DeleteTagCan(System.String)">
+            <summary>
+            Deletes a TagCan
+            </summary>
+            <param name="tagCanId">can id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">TagCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.GetTagCanById(System.String)">
+            <summary>
+            Find TagCan by ID
+            </summary>
+            <remarks>Returns a single tagcan</remarks>
+            <param name="tagCanId">ID of TagCan to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">TagCan not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.FindTagCansByCanId(System.String)">
+            <summary>
+            Finds TagCans by CanID
+            </summary>
+            <remarks>TagCanId by CanID</remarks>
+            <param name="canId">Can Id</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid canId value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.FindTagCansByTagId(System.String)">
+            <summary>
+            Finds TagCans by TagID
+            </summary>
+            <remarks>TagCanId by TagID</remarks>
+            <param name="tagId">Tag Id</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid canId value</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagCanController.GettagCanList">
+            <summary>
+            List TagCans
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.TagController">
+            <summary>
+            API-Controller: Tag
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.Addtag(EnergyScanApi.Models.Tag)">
+            <summary>
+            Add a new tag
+            </summary>
+            <param name="body">tag object that needs to be added to the store</param>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.Updatetag(System.String,EnergyScanApi.Models.Tag)">
+            <summary>
+            Update an existing tag
+            </summary>
+            <remarks>Update tag</remarks>
+            <param name="tagId">tag object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">tag not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.Deletetag(System.String)">
+            <summary>
+            Deletes a tag
+            </summary>
+            <param name="tagId">can id to delete</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">tag not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.GettagById(System.String)">
+            <summary>
+            Find Tag by ID
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="tagId">ID of tag to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.GettagByName(System.String)">
+            <summary>
+            Find Tag by Name
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="tag">ID of tag to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TagController.GettagList">
+            <summary>
+            List Tags
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.TasteController">
+            <summary>
+            API-Controller: Taste
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.Addtaste(EnergyScanApi.Models.Taste)">
+            <summary>
+            Add a new taste
+            </summary>
+            <param name="body">taste object that needs to be added to the store</param>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.Updatetaste(System.String,EnergyScanApi.Models.Taste)">
+            <summary>
+            Update an existing taste
+            </summary>
+            <remarks>Update taste</remarks>
+            <param name="tasteId">taste object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">taste not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.Deletetaste(System.String)">
+            <summary>
+            Deletes a taste
+            </summary>
+            <param name="tasteId">can id to delete</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">taste not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.GettasteById(System.String)">
+            <summary>
+            Find Taste by ID
+            </summary>
+            <remarks>Returns a single can</remarks>
+            <param name="tasteId">ID of taste to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.GettasteByName(System.String)">
+            <summary>
+            Find Taste by ID
+            </summary>
+            <remarks>Returns a single Taste</remarks>
+            <param name="taste">ID of taste to return</param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">can not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.TasteController.GettasteList">
+            <summary>
+            List Taste
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserController.CreateUser(EnergyScanApi.Models.User)">
+            <summary>
+            Create user
+            </summary>
+            <remarks>This can only be done by the logged in user.</remarks>
+            <param name="body">Created user object</param>
+            <response code="0">successful operation</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserController.UpdateUser(System.String,EnergyScanApi.Models.User)">
+            <summary>
+            Updated user
+            </summary>
+            <remarks>This can only be done by the logged in user.</remarks>
+            <param name="userId">name that need to be updated</param>
+            <param name="body">Updated user object</param>
+            <response code="400">Invalid user supplied</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserController.DeleteUser(System.String)">
+            <summary>
+            Delete user
+            </summary>
+            <remarks>This can only be done by the logged in user.</remarks>
+            <param name="userid">The name that needs to be deleted</param>
+            <response code="400">Invalid username supplied</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserController.GetUserList">
+            <summary>
+            List users
+            </summary>
+            <response code="200">successful operation</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserController.GetUserByName(System.String)">
+            <summary>
+            Get user by user name
+            </summary>
+            <param name="username">The name that needs to be fetched. Use user1 for testing. </param>
+            <response code="200">successful operation</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="T:EnergyScanApi.Controllers.UserPolicyController">
+            <summary>
+            API-Controller: UserPolicy
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.#ctor(EnergyScanApi.AppDb)">
+            <summary>
+            Constructor with DB-Connection injection
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.AdduserPolicy(EnergyScanApi.Models.UserPolicy)">
+            <summary>
+            Add a new userPolicy
+            </summary>
+            <param name="body">UserPolicy object that needs to be added to the store</param>
+            <response code="200">successful operation</response>
+            <response code="404">UserPolicy not found</response>
+            <response code="405">Invalid input</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.UpdateuserPolicy(System.String,EnergyScanApi.Models.UserPolicy)">
+            <summary>
+            Update an existing userPolicy
+            </summary>
+            <remarks>Update userPolicy</remarks>
+            <param name="userPolicyId">UserPolicy object that needs to be updated </param>
+            <param name="body"></param>
+            <response code="200">successful operation</response>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">UserPolicy not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.DeleteuserPolicy(System.String)">
+            <summary>
+            Deletes a userPolicy
+            </summary>
+            <param name="userPolicyId">UserPolicy id to delete</param>
+            <response code="200">successful operation</response>
+            <response code="404">UserPolicy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.GetuserPolicyById(System.String)">
+            <summary>
+            Find userPolicy by ID
+            </summary>
+            <remarks>Returns a single userPolicy</remarks>
+            <param name="userPolicyId">ID of userPolicy to return</param>
+            <response code="200">successful operation</response>
+            <response code="404">UserPolicy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.GetuserPolicyByUserId(System.String)">
+            <summary>
+            Find userPolicys by UserId
+            </summary>
+            <remarks>Returns userPolicys of userId</remarks>
+            <param name="userId">ID of User</param>
+            <response code="200">successful operation</response>
+            <response code="404">UserPolicy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.GetuserPolicyByPolicyId(System.String)">
+            <summary>
+            Find userPolicys by PolicyId
+            </summary>
+            <remarks>Returns userPolicys of policyId</remarks>
+            <param name="policyId">ID of policy</param>
+            <response code="200">successful operation</response>
+            <response code="404">UserPolicy not found</response>
+        </member>
+        <member name="M:EnergyScanApi.Controllers.UserPolicyController.GetuserPolicyList">
+            <summary>
+            List userPolicys
+            </summary>
+            <returns></returns>
+            <response code="200">successful operation</response>
+            <response code="404">UserPolicys not found</response>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.BarcodeDTO">
+            <summary>
+            Data-Transfer-Object: Barcode
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.BarcodeDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.BarcodeDTO.Name">
+            <summary>
+            Barcode-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.BarcodeDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.CanDTO">
+            <summary>
+            Data-Transfer-Object: Can
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.CanDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.CanDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.CanDTO.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.CanDTO.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.CanDTO.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.CanDTO.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.ChangeRequestDTO">
+            <summary>
+            Data-Transfer-Object: ChangeRequest
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.ChangeRequestDTO.id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.ChangeRequestDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.CountryDTO">
+            <summary>
+            Data-Transfer-Object: Country
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.CountryDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.CountryDTO.Name">
+            <summary>
+            Country-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.CountryDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.GroupDTO">
+            <summary>
+            Data-Transfer-Object: Group
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.GroupDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.GroupDTO.Name">
+            <summary>
+            Group-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.GroupDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.ManufacturerDTO">
+            <summary>
+            Data-Transfer-Object: Manufacturer
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.ManufacturerDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.ManufacturerDTO.Name">
+            <summary>
+            Manufacturer-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.ManufacturerDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.StatusDTO">
+            <summary>
+            Data-Transfer-Object: Status
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.StatusDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.StatusDTO.Name">
+            <summary>
+            Status-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.StatusDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.TagDTO">
+            <summary>
+            Data-Transfer-Object: Tag
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.TagDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.TagDTO.Name">
+            <summary>
+            Tag-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.TagDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.TasteDTO">
+            <summary>
+            Data-Transfer-Object: Taste
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.TasteDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.TasteDTO.Name">
+            <summary>
+            Taste-Value
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.TasteDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.TokenDTO">
+            <summary>
+            Access Token inherit from UserDTO
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.TokenDTO.access_token">
+            <summary>
+            Access-Token
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.TokenDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.DTOs.UserDTO">
+            <summary>
+            Data-Transfer-Object: User
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.UserDTO.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.UserDTO.Username">
+            <summary>
+            Human readable login identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.UserDTO.Email">
+            <summary>
+            Email address for verification and password recovery
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.UserDTO.Group">
+            <summary>
+            Group identifier
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.DTOs.UserDTO.Verified">
+            <summary>
+            Verification switch for an active useraccount
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.DTOs.UserDTO.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.Filters.BasePathFilter">
+            <summary>
+            BasePath Document Filter sets BasePath property of Swagger and removes it from the individual URL paths
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Filters.BasePathFilter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="basePath">BasePath to remove from Operations</param>
+        </member>
+        <member name="P:EnergyScanApi.Filters.BasePathFilter.BasePath">
+            <summary>
+            Gets the BasePath of the Swagger Doc
+            </summary>
+            <returns>The BasePath of the Swagger Doc</returns>
+        </member>
+        <member name="M:EnergyScanApi.Filters.BasePathFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Apply the filter
+            </summary>
+            <param name="swaggerDoc">OpenApiDocument</param>
+            <param name="context">FilterContext</param>
+        </member>
+        <member name="T:EnergyScanApi.Filters.GeneratePathParamsValidationFilter">
+            <summary>
+            Path Parameter Validation Rules Filter
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Filters.GeneratePathParamsValidationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="operation">Operation</param>
+            <param name="context">OperationFilterContext</param>
+        </member>
+        <member name="P:EnergyScanApi.Models.Barcode.Id">
+            <summary>
+            Id of Barcode
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.Models.Barcode.Name">
+            <summary>
+            Actual Barcode
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.Models.Barcode.CreationDate">
+            <summary>
+            Date when this Barcode was created
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.Models.Barcode.ChangedLast">
+            <summary>
+            Date when this entry was last changed
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.Models.Barcode.ChangedById">
+            <summary>
+            UserId of User made the last change
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.Models.Can">
+            <summary>
+            Database representatiokn: Can
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.Models.Can.Id">
+            <summary>
+            Unique identifier
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Models.Can.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:EnergyScanApi.Security.PasswordHasher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Security.PasswordHasher.#ctor(EnergyScanApi.Security.HashingOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:EnergyScanApi.Security.PasswordHasher.Hash(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Security.PasswordHasher.Check(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hash"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Security.IPasswordHasher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Security.IPasswordHasher.Hash(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyScanApi.Security.IPasswordHasher.Check(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hash"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyScanApi.Security.HashingOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EnergyScanApi.Security.HashingOptions.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EnergyScanApi.Security.HashingOptions.Iterations">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
